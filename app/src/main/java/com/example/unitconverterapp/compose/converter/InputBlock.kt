@@ -101,7 +101,7 @@ private fun hideKeyboardAndConvert(
     inputText: MutableState<String>,
     calculate: (String) -> Unit,
     keyboardController: SoftwareKeyboardController?,
-    context: Context
+    context: Context,
 ) {
     keyboardController?.hide()
 
