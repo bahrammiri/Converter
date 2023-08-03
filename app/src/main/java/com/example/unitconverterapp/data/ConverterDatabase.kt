@@ -5,18 +5,18 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [ConversionResult::class],version = 1)
+@Database(entities = [ConversionResult::class], version = 1)
 abstract class ConverterDatabase : RoomDatabase() {
 
-    abstract val converterDAO : ConverterDAO
+    abstract val converterDAO: ConverterDAO
 
-    companion object{
+    companion object {
         @Volatile
-        private var INSTANCE : ConverterDatabase? = null
-        fun getInstance(context: Context):ConverterDatabase{
-            synchronized(this){
+        private var INSTANCE: ConverterDatabase? = null
+        fun getInstance(context: Context): ConverterDatabase {
+            synchronized(this) {
                 var instance = INSTANCE
-                if(instance==null){
+                if (instance == null) {
                     instance = Room.databaseBuilder(
                         context.applicationContext,
                         ConverterDatabase::class.java,

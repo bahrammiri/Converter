@@ -1,4 +1,4 @@
-package com.example.unitconverterapp.compose.history
+package com.example.unitconverterapp.compose.result
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
@@ -21,34 +21,32 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun HistoryItem(
- messagePart1 : String,
- messagePart2 : String,
- onClose : () -> Unit,
- modifier: Modifier = Modifier
-){
-   Row (
-        modifier = modifier
+    messagePart1: String,
+    messagePart2: String,
+    onClose: () -> Unit,
+) {
+    Row(
+        modifier = Modifier
             .fillMaxWidth()
             .border(border = BorderStroke(0.5.dp, Color.Gray)),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
-           ){
-       Column {
-           Text(text = messagePart1,
-               fontSize = 20.sp
-           )
-           Text(text = messagePart2,
+    ) {
+        Column {
+            Text(
+                text = messagePart1,
+                fontSize = 20.sp
+            )
+            Text(
+                text = messagePart2,
                 color = Color.Blue,
                 fontWeight = FontWeight.Bold,
                 fontSize = 20.sp
-           )
-       }
-       IconButton(onClick = { onClose() }) {
-           Icon(Icons.Filled.Close, contentDescription ="close" )
-       }
-       
-       
-
-   }
+            )
+        }
+        IconButton(onClick = { onClose() }) {
+            Icon(Icons.Filled.Close, contentDescription = "close")
+        }
+    }
 
 }

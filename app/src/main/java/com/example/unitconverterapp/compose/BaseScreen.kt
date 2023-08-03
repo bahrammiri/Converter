@@ -12,29 +12,31 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.unitconverterapp.ConverterViewModel
 import com.example.unitconverterapp.ConverterViewModelFactory
 import com.example.unitconverterapp.compose.converter.TopScreen
-import com.example.unitconverterapp.compose.history.HistoryScreen
+import com.example.unitconverterapp.compose.result.HistoryScreen
 
 @Composable
 fun BaseScreen(
     factory: ConverterViewModelFactory,
-    modifier : Modifier = Modifier,
-    converterViewModel : ConverterViewModel = viewModel(factory = factory)
-){
+    converterViewModel: ConverterViewModel = viewModel(factory = factory),
+) {
+    val list = converterViewModel.getConversions()
+    val historyList = converterViewModel.historyList.collectAsState(initial = emptyList())
 
-   val list = converterViewModel.getConversions()
-   val historyList = converterViewModel.resultList.collectAsState(initial = emptyList())
+    Column(modifier = Modifier.padding(30.dp)) {
 
-    Column(modifier = modifier.padding(30.dp)) {
-        TopScreen(list){ message1,message2 ->
-            converterViewModel.addResult(message1,message2)
+        TopScreen(list) { message1, message2 ->
+            converterViewModel.addResult(message1, message2)
         }
-        Spacer(modifier = modifier.height(20.dp))
+
+        Spacer(modifier = Modifier.height(20.dp))
+
         HistoryScreen(
-            historyList,{item ->
-                 converterViewModel.removeResult(item)
+            historyList,
+            { item ->
+                converterViewModel.removeResult(item)
             },
             {
-              converterViewModel.clearAll()
+                converterViewModel.clearAll()
             }
         )
     }

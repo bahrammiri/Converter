@@ -15,6 +15,7 @@ import com.example.unitconverterapp.ui.theme.UnitConverterAppTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         val dao = ConverterDatabase.getInstance(application).converterDAO
         val repository = ConverterRepositoryImpl(dao)
         val factory = ConverterViewModelFactory(repository)
@@ -26,7 +27,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                  BaseScreen(factory = factory)
+                    BaseScreen(factory = factory)
                 }
             }
         }
